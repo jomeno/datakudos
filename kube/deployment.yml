@@ -1,0 +1,28 @@
+# Deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datakudos
+  labels:
+    app: datakudos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: datakudos
+  template:
+    metadata:
+      labels:
+        app: datakudos
+    spec:
+      containers:
+      - name: datakudos
+        image: jemnak/datakudos:v1
+        imagePullPolicy: Always
+      
+        ports:
+        - containerPort: 80
+
+      imagePullSecrets:
+      - name: dockersecret
