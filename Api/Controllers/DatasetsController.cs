@@ -38,6 +38,14 @@ namespace Api.Controllers
                          new FieldModel(){ Name = "Remuneration", Type = "decimal"},
                     } 
                 },
+                new DatasetModel(){ 
+                    Name = "Medical Insurance",
+                    Fields = new List<FieldModel>(){ 
+                         new FieldModel(){ Name = "Id", Type = "long"},
+                         new FieldModel(){ Name = "EmployeeId", Type = "long"},
+                         new FieldModel(){ Name = "InsurancePlan", Type = "string"},
+                    } 
+                },
              };
 
              

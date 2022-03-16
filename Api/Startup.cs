@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +17,7 @@ namespace Api
 {
     public class Startup
     {
+        private readonly string _datakudosPolicy = "Datakudos";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,9 +30,13 @@ namespace Api
         {
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
+
+            services.AddCors(options => 
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" });
+                options.AddPolicy(_datakudosPolicy, builder => builder
+                        .WithOrigins("http://localhost:3000", "https://datakudos.netlify.app")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
             });
         }
 
@@ -40,11 +46,15 @@ namespace Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api v1"));
             }
 
             app.UseHttpsRedirection();
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions{
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
+            app.UseCors(_datakudosPolicy);
 
             app.UseRouting();
 
