@@ -1,0 +1,59 @@
+name: Datakudos
+
+on:
+  push:
+    branches:
+    - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  GIT_SHA: ${{ github.sha }}
+  GIT_REF: ${{ github.ref }}
+  GIT_PAT: ${{ secrets.GIT_PAT }}
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+jobs:
+
+  build:
+    name: Build docker image
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Login to docker
+      run: |
+        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag jemnak/datakudos:v1
+      
+    - name: Docker push
+      run: docker push jemnak/datakudos:v1
+
+  deploy:
+    name: Update deployment
+    runs-on: ubuntu-latest
+    needs:
+    - build
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@main
+
+    - name: Login to docker
+      run: |
+        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+    - name: Set Kubeconfig
+      uses: Azure/k8s-set-context@v1
+      with:
+        kubeconfig: ${{ secrets.KUBECONFIG }}
+
+    - name: Apply Deployment Configuration
+      run: |
+        curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash 
+        ./kustomize build kube | kubectl apply -f -
