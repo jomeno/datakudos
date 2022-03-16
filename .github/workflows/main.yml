@@ -3,7 +3,7 @@ name: Datakudos
 on:
   push:
     branches:
-    - main
+    - dev
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -28,10 +28,10 @@ jobs:
       run: |
         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
-    - name: Build the Docker image
+    - name: Build datakudos api docker image
       run: docker build . --file Dockerfile --tag jemnak/datakudos:v1
       
-    - name: Docker push
+    - name: Docker push fanta api
       run: docker push jemnak/datakudos:v1
 
   deploy:
@@ -42,7 +42,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@main
+      uses: actions/checkout@v2
 
     - name: Login to docker
       run: |
