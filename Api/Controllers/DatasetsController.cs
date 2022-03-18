@@ -61,7 +61,7 @@ namespace Api.Controllers
                     FriendlyName = "Vacation", 
                     Fields = new List<FieldModel>(){ 
                          new FieldModel(){ Name = "Id", FriendlyName = "Id", Type = "long"},
-                         new FieldModel(){ Name = "SubscriptionPlan", FriendlyName = "Id", Type = "string"},
+                         new FieldModel(){ Name = "SubscriptionPlan", FriendlyName = "Subscription Plan", Type = "string"},
                          new FieldModel(){ Name = "Description", FriendlyName = "Description", Type = "string"},
                          new FieldModel(){ Name = "StartDate", FriendlyName = "Start Date", Type = "datetime"},
                          new FieldModel(){ Name = "EndDate", FriendlyName = "End Date", Type = "datetime"},
