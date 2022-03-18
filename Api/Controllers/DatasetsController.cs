@@ -23,34 +23,38 @@ namespace Api.Controllers
              var result = new List<DatasetModel>(){
                 new DatasetModel(){ 
                     Name = "Employee",
+                    FriendlyName = "Employee",
                     Fields = new List<FieldModel>(){ 
-                         new FieldModel(){ Name = "Id", Type = "long"},
-                         new FieldModel(){ Name = "Surname", Type = "string"},
-                         new FieldModel(){ Name = "BirthDate", Type = "datetime"},
-                         new FieldModel(){ Name = "Height", Type = "decimal"},
+                         new FieldModel(){ Name = "Id", FriendlyName = "Id", Type = "long"},
+                         new FieldModel(){ Name = "Surname", FriendlyName = "Surname", Type = "string"},
+                         new FieldModel(){ Name = "BirthDate", FriendlyName = "Birth Date", Type = "datetime"},
+                         new FieldModel(){ Name = "Height", FriendlyName = "Height", Type = "decimal"},
                     } 
                 },
                 new DatasetModel(){ 
                     Name = "Compensation",
+                    FriendlyName = "Compensation",
                     Fields = new List<FieldModel>(){ 
-                         new FieldModel(){ Name = "Id", Type = "long"},
-                         new FieldModel(){ Name = "EmployeeId", Type = "long"},
-                         new FieldModel(){ Name = "Remuneration", Type = "decimal"},
+                         new FieldModel(){ Name = "Id", FriendlyName = "Id", Type = "long"},
+                         new FieldModel(){ Name = "EmployeeId", FriendlyName = "Employee Id", Type = "long"},
+                         new FieldModel(){ Name = "Remuneration", FriendlyName = "Remuneration", Type = "decimal"},
                     } 
                 },
                 new DatasetModel(){ 
-                    Name = "Medical Insurance",
+                    Name = "MedicalInsurance",
+                    FriendlyName = "Medical Insurance",
                     Fields = new List<FieldModel>(){ 
-                         new FieldModel(){ Name = "Id", Type = "long"},
-                         new FieldModel(){ Name = "EmployeeId", Type = "long"},
-                         new FieldModel(){ Name = "InsurancePlan", Type = "string"},
+                         new FieldModel(){ Name = "Id", FriendlyName = "Id", Type = "long"},
+                         new FieldModel(){ Name = "EmployeeId", FriendlyName = "Employee Id", Type = "long"},
+                         new FieldModel(){ Name = "InsurancePlan", FriendlyName = "Insurance Plan", Type = "string"},
                     } 
                 },
                 // new DatasetModel(){ 
                 //     Name = "Vacation",
+                //     FriendlyName = "Vacation", 
                 //     Fields = new List<FieldModel>(){ 
-                //          new FieldModel(){ Name = "Id", Type = "long"},
-                //          new FieldModel(){ Name = "SubscriptionPlan", Type = "string"},
+                //          new FieldModel(){ Name = "Id", FriendlyName = "Id", Type = "long"},
+                //          new FieldModel(){ Name = "SubscriptionPlan", FriendlyName = "Id", Type = "string"},
                 //     } 
                 // },
              };
