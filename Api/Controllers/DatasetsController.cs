@@ -29,6 +29,7 @@ namespace Api.Controllers
                          new FieldModel(){ Name = "Surname", FriendlyName = "Surname", Type = "string"},
                          new FieldModel(){ Name = "BirthDate", FriendlyName = "Birth Date", Type = "datetime"},
                          new FieldModel(){ Name = "Height", FriendlyName = "Height", Type = "decimal"},
+                         new FieldModel(){ Name = "Description", FriendlyName = "Description", Type = "string"},
                     } 
                 },
                 new DatasetModel(){ 
@@ -38,6 +39,9 @@ namespace Api.Controllers
                          new FieldModel(){ Name = "Id", FriendlyName = "Id", Type = "long"},
                          new FieldModel(){ Name = "EmployeeId", FriendlyName = "Employee Id", Type = "long"},
                          new FieldModel(){ Name = "Remuneration", FriendlyName = "Remuneration", Type = "decimal"},
+                         new FieldModel(){ Name = "Periodicity", FriendlyName = "Periodicity", Type = "int"},
+                         new FieldModel(){ Name = "Description", FriendlyName = "Description", Type = "string"},
+                         new FieldModel(){ Name = "Date", FriendlyName = "Date", Type = "datetime"},
                     } 
                 },
                 new DatasetModel(){ 
@@ -47,16 +51,22 @@ namespace Api.Controllers
                          new FieldModel(){ Name = "Id", FriendlyName = "Id", Type = "long"},
                          new FieldModel(){ Name = "EmployeeId", FriendlyName = "Employee Id", Type = "long"},
                          new FieldModel(){ Name = "InsurancePlan", FriendlyName = "Insurance Plan", Type = "string"},
+                         new FieldModel(){ Name = "Description", FriendlyName = "Description", Type = "string"},
+                         new FieldModel(){ Name = "Social", FriendlyName = "Social", Type = "string"},
+                         new FieldModel(){ Name = "Date", FriendlyName = "Date", Type = "datetime"},
                     } 
                 },
-                // new DatasetModel(){ 
-                //     Name = "Vacation",
-                //     FriendlyName = "Vacation", 
-                //     Fields = new List<FieldModel>(){ 
-                //          new FieldModel(){ Name = "Id", FriendlyName = "Id", Type = "long"},
-                //          new FieldModel(){ Name = "SubscriptionPlan", FriendlyName = "Id", Type = "string"},
-                //     } 
-                // },
+                new DatasetModel(){ 
+                    Name = "Vacation",
+                    FriendlyName = "Vacation", 
+                    Fields = new List<FieldModel>(){ 
+                         new FieldModel(){ Name = "Id", FriendlyName = "Id", Type = "long"},
+                         new FieldModel(){ Name = "SubscriptionPlan", FriendlyName = "Id", Type = "string"},
+                         new FieldModel(){ Name = "Description", FriendlyName = "Description", Type = "string"},
+                         new FieldModel(){ Name = "StartDate", FriendlyName = "Start Date", Type = "datetime"},
+                         new FieldModel(){ Name = "EndDate", FriendlyName = "End Date", Type = "datetime"},
+                    } 
+                },
              };
 
              
